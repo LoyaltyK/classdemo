@@ -1,12 +1,19 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HelloWorldVue from '../components/HelloWorld.vue'
+import IndexVue from '../views/common/Index.vue'
 import LoginVue from '../views/common/Login.vue'
 
 
 const routes = [
     {
-        path: '/',  //主页 
-        component: HelloWorldVue,
+        path: "/",
+        redirect: "/index",
+    },
+    {
+        path: '/index',  
+        component: IndexVue,
+        meta: {
+            isCheck: true
+        },
     },
     {
         path: "/login",
@@ -18,6 +25,21 @@ const routes = [
 const router = createRouter({
     routes,
     history: createWebHashHistory()
+})
+
+router.beforeEach((to, from, next)=>{
+    console.log("to: " + to.fullPath)
+    if (to.meta.isCheck) {
+        var token = localStorage.getItem("token")
+        // console.log(token)
+        if ( token === null && token === "" ) {
+            next("/login")
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
 })
 
 export default router
