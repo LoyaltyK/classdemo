@@ -10,3 +10,6 @@ const login = (account: String, password: String) => {
             }
         })
 }
+
+
+export { login }

@@ -22,6 +22,7 @@
 import { reactive, ref } from 'vue'
 import type { FormInstance } from 'element-plus'
 import router from '../../router';
+import { login } from '../../api/login'
 
 const ruleFormRef = ref<FormInstance>()
 
@@ -60,7 +61,8 @@ const submitForm = (formEl: FormInstance | undefined) => {
   formEl.validate((valid) => {
     if (valid) {
       console.log('submit!')
-      router.push("/")
+      login(ruleForm.account, ruleForm.password)
+      // router.push("/")
     } else {
       console.log('error submit!')
       return false
