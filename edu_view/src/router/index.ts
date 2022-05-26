@@ -30,12 +30,15 @@ const router = createRouter({
 router.beforeEach((to, from, next)=>{
     console.log("to: " + to.fullPath)
     if (to.meta.isCheck) {
-        var token = localStorage.getItem("token")
-        // console.log(token)
-        if ( token === null && token === "" ) {
-            next("/login")
-        } else {
+        if (localStorage.getItem("token")) {
             next()
+        } else {
+            next({
+                path: "/login",
+                query: {
+                    repath: to.fullPath
+                }
+            })
         }
     } else {
         next()

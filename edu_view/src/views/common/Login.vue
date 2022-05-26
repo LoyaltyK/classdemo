@@ -1,14 +1,21 @@
 <template>
   <div class="main">
 
-    <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" label-width="120px" class="demo-ruleForm">
-      <el-form-item label="账号" prop="pass">
-        <el-input v-model="ruleForm.account" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="密码" prop="checkPass">
-        <el-input v-model="ruleForm.password" type="password" autocomplete="off" />
-      </el-form-item>
-  
+
+
+    <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" label-width="50px" class="demo-ruleForm">
+      <!-- <h2 style="border-bottom: 20px;">教务管理系统</h2> -->
+      <div>
+        <el-form-item label="账号" prop="pass">
+          <el-input v-model="ruleForm.account" autocomplete="off" />
+        </el-form-item>
+      </div>
+      <div>
+        <el-form-item label="密码" prop="checkPass">
+          <el-input v-model="ruleForm.password" type="password" autocomplete="off" />
+        </el-form-item>
+      </div>
+
       <el-form-item>
         <el-button type="primary" @click="submitForm(ruleFormRef)">Submit</el-button>
         <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
@@ -91,8 +98,10 @@ const resetForm = (formEl: FormInstance | undefined) => {
   height: 50%;
   width: 40%;
   background-color: rgba(255, 255, 255, 0.5);
-  // display: flex;
-  // align-items: center;
-  // justify-content:left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
 }
 </style>
