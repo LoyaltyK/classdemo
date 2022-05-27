@@ -1,26 +1,18 @@
 <template>
 
-    <!-- <div class="common-layout"> -->
     <el-container>
-        <el-header>
-            <header>
-                <div @click="logout">登出</div>
-                用户{{ user.username }}<br>
-                id {{ user.userid }}<br>
-                权限{{ user.role }}<br>
-            </header>
-
-        </el-header>
+        <el-aside width="200px">
+            <menuVue />
+        </el-aside>
         <el-container>
-            <el-aside width="200px">
-                <menuVue/>
-            </el-aside>
+            <el-header>
+                <div class="header">教务管理系统</div>
+            </el-header>
             <el-main>
-                <router-view/>
+                <router-view />
             </el-main>
         </el-container>
     </el-container>
-    <!-- </div> -->
 
 
 </template>
@@ -46,22 +38,41 @@ onMounted(() => {
     // menus = JSON.parse(router.)
 })
 
-const logout = () => {
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
-    localStorage.removeItem("menus")
-    router.push("/login")
-}
 </script>
 
 
 <style scoped lang="scss">
-.el-container{
+.el-container {
     height: 100%;
 
-    *{
+    * {
         padding: 0;
         margin: 0;
     }
+
+    .el-header {
+        // border-bottom: 1px solid #333;
+        box-shadow: 0 2px 4px 0 rgb(0 0 0 / 5%);
+    }
+
+    .el-main{
+        padding-left: 35px;
+        padding-top: 35px;
+    }
+
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .el-main {
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+        width: 90%;
+    }
+
 }
 </style>
