@@ -1,7 +1,7 @@
 <template>
-    <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+    <el-menu :default-active="route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" router="true">
        
-        <el-menu-item v-for="menu in menus" :key="menu.path" :index="menu.name">
+        <el-menu-item v-for="menu in menus" :key="menu.path" :index="menu.path">
             <el-icon>
                 <icon-menu />
             </el-icon>
@@ -20,14 +20,29 @@ import {
     Location,
     Setting,
 } from '@element-plus/icons-vue'
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
+
+onMounted(()=>{
+    let menus1 = JSON.parse(localStorage.getItem("menus") || "").menus
+    for(let i=0; i< menus1.length; i++ ){
+        menus[i] = menus1[i] 
+    }
+    
+    console.log(menus)
+})
+
 const route = useRoute()
-let menus = reactive([{
-    name: "",
-    path: "",
-}])
+
+class menu {
+    name= "";
+    path= "";
+}
+
+let menus: Array<menu> = reactive([])
+
+
 
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -36,11 +51,7 @@ const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 
-onMounted(()=>{
-    // menus = route.params.menus
-    menus = JSON.parse(localStorage.getItem("menus") || "").menus
-    console.log(menus)
-})
+
 
 </script>
 

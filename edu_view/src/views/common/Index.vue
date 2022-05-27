@@ -15,7 +15,9 @@
             <el-aside width="200px">
                 <menuVue/>
             </el-aside>
-            <el-main>Main</el-main>
+            <el-main>
+                <router-view/>
+            </el-main>
         </el-container>
     </el-container>
     <!-- </div> -->
@@ -47,6 +49,7 @@ onMounted(() => {
 const logout = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("user")
+    localStorage.removeItem("menus")
     router.push("/login")
 }
 </script>

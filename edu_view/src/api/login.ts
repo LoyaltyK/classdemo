@@ -3,18 +3,6 @@ import qs from 'qs'
 import { ElMessage } from 'element-plus'
 import router from "../router"
 
-// const login1 = (account: String, password: String) => {
-//     var data = {"account": account, "password": password}
-//     api.post("/login",qs.stringify(data))
-//         .then(res => {
-//             console.log(res.data)
-//             localStorage.setItem("token",res.data.data.token)
-//             localStorage.setItem("user",res.data.data.user)
-//             // ElMessage(res.data.message)
-//             router.push("/")
-//         })
-// }
-
 async function login(account: String, password: String) {
     var data = {"account": account, "password": password}
     api.post("/login",qs.stringify(data))
@@ -28,19 +16,17 @@ async function login(account: String, password: String) {
                     menus: [
                         {
                             name: "成绩查询",
-                            path: "/",
+                            path: "/student/scores",
                         },
                         {
                             name: "奖罚查询",
-                            path: "/"
+                            path: "/student/reward"
                         }
                     ]
                 }
             }
             // route.
             ElMessage({type: "success",message: "登录成功"})
-            // console.log(menus)
-            // router.push({path: "/index",params: menus})
             localStorage.setItem("menus",JSON.stringify(menus))
             router.push("/")
         })

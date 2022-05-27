@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import IndexVue from '../views/common/Index.vue'
 import LoginVue from '../views/common/Login.vue'
+import scoresVue from '../views/student/Scores.vue'
+import rewardVue from '../views/student/Reward.vue'
 
 
 const routes = [
@@ -11,9 +13,20 @@ const routes = [
     {
         path: '/index',  
         component: IndexVue,
+        redirect: "/student/scores",
         meta: {
             isCheck: true
         },
+        children: [
+            {
+                path: "/student/scores",
+                component: scoresVue
+            },
+            {
+                path: "/student/reward",
+                component: rewardVue
+            }
+        ]
     },
     {
         path: "/login",
