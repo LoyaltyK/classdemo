@@ -25,12 +25,24 @@ async function login(account: String, password: String) {
             let menus = {}
             if(res.data.data.user.role === "student"){
                 menus = {
-                    "成绩查询": "/",
-                    "奖罚查询": "/"
+                    menus: [
+                        {
+                            name: "成绩查询",
+                            path: "/",
+                        },
+                        {
+                            name: "奖罚查询",
+                            path: "/"
+                        }
+                    ]
                 }
             }
+            // route.
             ElMessage({type: "success",message: "登录成功"})
-            router.push({path: "/",params: menus})
+            // console.log(menus)
+            // router.push({path: "/index",params: menus})
+            localStorage.setItem("menus",JSON.stringify(menus))
+            router.push("/")
         })
 }
 
