@@ -24,6 +24,19 @@ async function login(account: String, password: String) {
                         }
                     ]
                 }
+            } else if(res.data.data.user.role === "teacher"){
+                menus = {
+                    menus: [
+                        {
+                            name: "选课申请",
+                            path: "/student/scores",
+                        },
+                        {
+                            name: "选课情况",
+                            path: "/student/reward"
+                        }
+                    ]
+                }
             }
             // route.
             ElMessage({type: "success",message: "登录成功"})

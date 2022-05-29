@@ -1,5 +1,6 @@
 package com.example.edu_end.controller;
 
+import com.example.edu_end.entity.Reward;
 import com.example.edu_end.entity.Scores;
 import com.example.edu_end.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,12 @@ public class StudentController {
     @GetMapping("/getStudentScores")
     public List<Scores> selectScoresByStudentId(int id){
         return studentService.selectScoresByStudentId(id);
+    }
+
+
+    @GetMapping("/getStudentReward")
+    public List<Reward> selectRewardByStudentId(int id){
+        return studentService.selectRewardByStudentId(id);
     }
 
 }

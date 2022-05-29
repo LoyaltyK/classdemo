@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 //            System.out.println(reUser);
             user.setPassWord(null);
             result.put("user", user);
-            result.put("token","登录成功");
+            result.put("token","success");
             return Result.success(result);
         }
 
